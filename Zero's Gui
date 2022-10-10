@@ -1,0 +1,247 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Zero's Gui", "BloodTheme")
+
+--MAIN
+local Main = Window:NewTab("UseFull Stuff")
+local MainSection = Main:NewSection("UseFull Stuff") 
+
+MainSection:NewSlider("Speed", "Speed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+MainSection:NewButton("Infinite Yield", "Admin", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+MainSection:NewButton("Back/Front Flip Script", "Z For Front Flips/X For Back Flips", function()
+ loadstring(game:HttpGet('https://pastebin.com/raw/7wDcPtLk'))()
+end)
+
+--BoogaBoogaScripts
+local Main = Window:NewTab("BoogaBoogaScripts")
+local BoogaBoogaScriptsSection = Main:NewSection("Booga Scripts") 
+
+BoogaBoogaScriptsSection:NewButton("BoogaBooga Auto Pickup and More", "Booga Bitch", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/yigKxDrK", true))()
+end)
+
+BoogaBoogaScriptsSection:NewButton("AutoFarm Xp", "Its very slow and you auto pick up the logs so the game does not lag out", function()
+
+ local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/Singularity5490/rbimgui-2/main/rbimgui-2.lua"))()
+local window = ui.new({text="autofarm"})
+local tab = window.new({text = "main"})
+local autofarmToggle = tab.new("Switch", {text="autofarm"})
+
+-- wrote this myself :sunglasses:
+local function getClosestObject(folder)
+   local distance, part = math.huge, nil
+   local mainPart
+   for i,v in pairs(folder:GetChildren()) do
+       local HRPPosition = Players.LocalPlayer.Character.HumanoidRootPart.Position
+
+       for i2,v2 in pairs(v:GetChildren()) do
+           if v2:IsA("BasePart") then
+               mainPart = v2
+               break
+           end
+       end
+
+       if mainPart and not mainPart.Parent:FindFirstChild("Humanoid") and mainPart.Parent:FindFirstChild("Health") then
+           local realDistance = math.abs((HRPPosition - mainPart.Position).Magnitude)
+
+           if realDistance < distance then
+               distance = realDistance
+               part = mainPart
+           end
+       end
+   end
+   return part
+end
+
+local function getClosestPickups(folder)
+   local pickups = {}
+   for i,v in pairs(folder:GetChildren()) do
+       if v:FindFirstChild("Pickup") and v:IsA("BasePart") and table.find(pickups,v) == nil then
+           if (Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).Magnitude <= 30 then
+               table.insert(pickups, v)
+           end
+       end
+   end
+   return pickups
+end
+
+
+while wait(0.3) do
+   if autofarmToggle.on then
+       local part = getClosestObject(workspace)
+       local HRPPosition = Players.LocalPlayer.Character.HumanoidRootPart.Position
+       local realDistance = math.round(math.abs((HRPPosition - part.Position).Magnitude))
+   
+       ReplicatedStorage.Events.SwingTool:FireServer(ReplicatedStorage.RelativeTime.Value, {
+           [1] = part
+       })
+       for i,v in pairs(getClosestPickups(workspace)) do
+           game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
+       end
+       wait(0.1)
+       if part.Position.Y <= 30 then
+           TweenService:Create(Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(realDistance/10, Enum.EasingStyle.Linear), {CFrame=part.CFrame+Vector3.new(0,part.Size.Y,0)}):Play()
+           task.wait(realDistance/10)
+       end
+   end
+end  
+end)
+
+--IslandtribesScirpts
+local Main = Window:NewTab("IslandtribesScripts")
+local IslandtribesScriptsSection = Main:NewSection("island Tribe Scripts") 
+
+IslandtribesScriptsSection:NewButton("Serpent x", "Need to Be whitelisted", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralDCStudios/darkastral/main/darkerthanurmom"))()
+end)
+
+IslandtribesScriptsSection:NewButton("Tribes X", "Dont Need to be whitelisted", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralDCStudios/Tribes-X/main/tribesx"))()
+end)
+
+IslandtribesScriptsSection:NewButton("Astral", "Dont Need to be whitelisted", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralDCStudios/Astral-DC/main/AstralDC"))()
+end)
+ IslandtribesScriptsSection:NewToggle("Infinite Candy Walkspeed Toggle", "Infinite Candy Walkspeed", function(state)
+      if state then
+          _G.HackedWalkSpeed = 24  local Plrs = game:GetService("Players")  local MyPlr = Plrs.LocalPlayer local MyChar = MyPlr.Character  if MyChar then local Hum = MyChar.Humanoid Hum.Changed:connect(function() Hum.WalkSpeed = _G.HackedWalkSpeed end) Hum.WalkSpeed = _G.HackedWalkSpeed end
+      _G.HackedWalkSpeed = 24
+  
+      local Plrs = game:GetService("Players")
+  
+      local MyPlr = Plrs.LocalPlayer
+      local MyChar = MyPlr.Character
+  
+      if MyChar then
+          local Hum = MyChar.Humanoid
+          Hum.Changed:connect(function()
+              Hum.WalkSpeed = _G.HackedWalkSpeed
+          end)
+          Hum.WalkSpeed = _G.HackedWalkSpeed
+      end
+      else
+          _G.HackedWalkSpeed = 18  local Plrs = game:GetService("Players")  local MyPlr = Plrs.LocalPlayer local MyChar = MyPlr.Character  if MyChar then local Hum = MyChar.Humanoid Hum.Changed:connect(function() Hum.WalkSpeed = _G.HackedWalkSpeed end) Hum.WalkSpeed = _G.HackedWalkSpeed end
+      _G.HackedWalkSpeed = 18
+  
+      local Plrs = game:GetService("Players")
+  
+      local MyPlr = Plrs.LocalPlayer
+      local MyChar = MyPlr.Character
+  
+      if MyChar then
+          local Hum = MyChar.Humanoid
+          Hum.Changed:connect(function()
+              Hum.WalkSpeed = _G.HackedWalkSpeed
+          end)
+          Hum.WalkSpeed = _G.HackedWalkSpeed
+      end
+      end
+  end)
+IslandtribesScriptsSection:NewButton("Grass Remover Script?", "It does what it says", function()
+local SetHiddenProp = sethiddenprop or set_hidden_prop
+
+SetHiddenProp(workspace.Terrain, "Decoration", false)
+end)
+IslandtribesScriptsSection:NewLabel("Spam Buy Stuff")
+IslandtribesScriptsSection:NewButton("Spam Buy Seed Pack", "It does what it says just click it fast", function()
+
+local args = {
+    [1] = "Resources",
+    [2] = 15
+}
+
+game:GetService("ReplicatedStorage").References.Comm.Events.Shop:FireServer(unpack(args))
+end)
+
+
+IslandtribesScriptsSection:NewButton("Spam Buy Arrow Pack", "It does what it says just click it fast", function()
+local args = {
+    [1] = "Resources",
+    [2] = 5
+}
+
+game:GetService("ReplicatedStorage").References.Comm.Events.Shop:FireServer(unpack(args)) 
+end)
+IslandtribesScriptsSection:NewLabel("Misc")
+IslandtribesScriptsSection:NewButton("DeleteNoBuildZones", "Delete The NoBuildZones(only for you)", function()
+        game.Workspace.Map.NoBuildZones:Destroy()
+      end)
+IslandtribesScriptsSection:NewButton("Invis Healia", "Makes Healia invis only for u", function()
+        game:GetService("Workspace").Replicators.NonPassive["Healing Aura"]:Destroy()
+      end)
+IslandtribesScriptsSection:NewButton("Break Diamond Barrier", "Breaks diamond barrier", function()
+        game:GetService("Workspace")["Diamond Barrier"]:Destroy()
+      end)
+ IslandtribesScriptsSection:NewButton("Break Moonstone gate", "Breaks Gates", function()
+        game:GetService("Workspace").Replicators.NonPassive["Moonstone Gate"]:Destroy()
+      end)
+IslandtribesScriptsSection:NewButton("Break Obsidian gate", "Breaks Gates", function()
+        game:GetService("Workspace").Replicators.NonPassive["Obsidian Gate"]:Destroy()
+      end)
+IslandtribesScriptsSection:NewButton("Break Zenyte Barrier", "Breaks Zen barrier", function()
+        game:GetService("Workspace")["Zenyte Barrier"]:Destroy()
+      end)
+IslandtribesScriptsSection:NewButton("Vapev4", "Bedwars VapeV4 Script", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/NewMainScript.lua", true))()
+      end)
+IslandtribesScriptsSection:NewButton("aimbot", "e", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/71YWvURH", true))()
+	end)
+
+local IslandtribesScriptsSection = Tab:IslandtribesScirpts("Sell")
+IslandtribesScriptsSection:NewButton("Sell Diamond", "Sell Diamonds", function()
+    local args = {
+        [1] = "Resource Trader",
+        [2] = 18
+    }
+    
+    game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+  end)
+
+ IslandtribesScriptsSection:NewButton("Sell Zenyte", "Sell Zenyte", function()
+    local args = {
+        [1] = "Resource Trader",
+        [2] = 19
+    }
+    
+    game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+  end)
+IslandtribesScriptsSection:NewButton("Sell Zenyte Sword", "Sells Your Zenyte Sword", function()
+    local args = {
+        [1] = "Weapon Trader",
+        [2] = 17
+    }
+    
+    game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+end)
+IslandtribesScriptsSection:NewButton("Sell Soul", "Sells Your Soul", function()
+local args = {
+    [1] = "Resource Trader",
+    [2] = 22
+}
+game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+end)
+IslandtribesScriptsSection:NewButton("Sell Dim Bow", "Sells dim Bow", function()
+        local args = {
+            [1] = "Weapon Trader",
+            [2] = 16
+        }
+        
+        game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+    end)
+IslandtribesScriptsSection:NewButton("Sell Zen Bow", "Sells Zen Bow", function()
+        local args = {
+            [1] = "Weapon Trader",
+            [2] = 18
+        }
+        
+        game:GetService("ReplicatedStorage").References.Comm.Events.TradeTrader:FireServer(unpack(args))
+    end)
